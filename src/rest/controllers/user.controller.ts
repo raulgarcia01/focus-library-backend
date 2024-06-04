@@ -16,25 +16,25 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   getAllUsers(): Promise<User[]> {
     return this.usersService.findAll();
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get(':userId')
   getOneUser(@Param('userId') userId: string): Promise<User> {
     return this.usersService.findOne(userId);
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   createUser(@Body() createUserDto: UserInputDto): Promise<User> {
     return this.usersService.createUser(createUserDto);
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Put(':userId')
   updateUser(
     @Param('userId') userId: string,

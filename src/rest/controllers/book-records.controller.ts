@@ -15,7 +15,7 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 export class BookRecordsController {
   constructor(private readonly bookRecordsService: BookRecordsService) {}
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post('checkout')
   checkoutBooks(
     @Body() checkoutDto: { userId: string; booksId: string[] },
@@ -26,7 +26,7 @@ export class BookRecordsController {
     );
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Put('return')
   returnBooks(
     @Body() checkoutDto: { userId: string; booksId: string[] },
@@ -37,13 +37,13 @@ export class BookRecordsController {
     );
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('records/:userId')
   findAllByUser(@Param('userId') userId: string): Promise<BookRecord[]> {
     return this.bookRecordsService.findAllByUser(userId);
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('checked-out/records/:userId')
   findAllCheckedOut(@Param('userId') userId: string): Promise<BookRecord[]> {
     return this.bookRecordsService.findAllCheckedOutByUser(userId);

@@ -16,31 +16,31 @@ import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 export class BooksController {
   constructor(private readonly booksService: BooksService) {}
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   getAllBooks(): Promise<Book[]> {
     return this.booksService.findAll();
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get(':bookId')
   getOneBook(@Param('bookId') bookId: string): Promise<Book> {
     return this.booksService.findOne(bookId);
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post('search')
   searchBooks(@Body() search: BookSearchDto): Promise<Book[]> {
     return this.booksService.search(search);
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   createBook(@Body() createBookDto: BookInputDto): Promise<Book> {
     return this.booksService.createBook(createBookDto);
   }
 
-  //@UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Put(':bookId')
   updateBook(
     @Param('bookId') bookId: string,
